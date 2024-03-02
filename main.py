@@ -1,6 +1,9 @@
 import streamlit as st
 import plotly.express as px
 from backend import get_data
+import os
+
+os.environ['API_KEY'] = st.secrets['API_KEY']
 
 # Add title, text, slider, selectbox
 st.title("Weather Forecast App")
