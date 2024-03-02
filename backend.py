@@ -1,7 +1,9 @@
 import requests
 import os
-#enter your API key
+
+# enter your API key
 apikey = os.environ['API_KEY']
+
 
 def get_data(place, forecast_days=None):
     url = f"https://api.openweathermap.org/data/2.5/forecast?q={place}&appid={apikey}&units=metric"
@@ -12,6 +14,7 @@ def get_data(place, forecast_days=None):
     filtered_data = filtered_data[:nr_values]
 
     return filtered_data
+
 
 if __name__ == "__main__":
     print(get_data(place="Tokyo", forecast_days=3))
