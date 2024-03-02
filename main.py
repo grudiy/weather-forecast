@@ -1,9 +1,7 @@
 import streamlit as st
 import plotly.express as px
 from backend import get_data
-import os
 
-# os.environ['API_KEY'] = st.secrets['API_KEY']
 
 # Add title, text, slider, selectbox
 st.title("Weather Forecast App")
@@ -19,6 +17,7 @@ else:
     try:
         # Get data
         filtered_data = get_data(place, days)
+        st.subheader(f"{option} for the next {days} days in {place.title()}")
 
         if option == "Temperature":
             # Create temperature plot
@@ -34,8 +33,6 @@ else:
             sky_conditions = [dict["weather"][0]["main"] for dict in filtered_data]
             image_paths = [images[condition] for condition in sky_conditions]
             st.image(image_paths, width=88)
-
-        st.subheader(f"{option} for the next {days} days in {place.title()}")
 
     except KeyError:
         st.subheader("You entered not existing place")
